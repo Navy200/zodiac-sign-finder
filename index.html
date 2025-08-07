@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Sign Finder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #f8bbd0;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #bbdefb;
+        }
+        
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #7e57c2;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #9575cd;
+            transform: translateY(-2px);
+        }
+        
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            display: none;
+        }
+        
+        .zodiac-sign {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            margin-bottom: 10px;
+        }
+        
+        .zodiac-date {
+            color: #b2ebf2;
+            margin-bottom: 15px;
+        }
+        
+        .zodiac-traits {
+            font-style: italic;
+            color: #ce93d8;
+        }
+        
+        .zodiac-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zodiac Sign Finder</h1>
+        
+        <div class="input-group">
+            <label for="birthdate">Enter Your Birth Date:</label>
+            <input type="date" id="birthdate" required>
+        </div>
+        
+        <button onclick="findZodiacSign()">Find My Sign</button>
+        
+        <div id="result">
+            <img class="zodiac-image" id="zodiac-img" src="" alt="Zodiac Symbol">
+            <div class="zodiac-sign" id="zodiac-name"></div>
+            <div class="zodiac-date" id="zodiac-date-range"></div>
+            <div class="zodiac-traits" id="zodiac-traits"></div>
+        </div>
+    </div>
+    
+    <script>
+        function findZodiacSign() {
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const month = birthdate.getMonth() + 1; // JavaScript months are 0-11
+            const day = birthdate.getDate();
+            
+            let zodiacSign = "";
+            let dateRange = "";
+            let traits = "";
+            let imageUrl = "";
+            let element = "";
+            let stone = "";
+            
+            // Determine zodiac sign based on date
+            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
+                zodiacSign = "Aquarius";
+                dateRange = "January 20 - February 18";
+                traits = "Progressive, original, independent, humanitarian";
+                imageUrl = "https://i2.wp.com/static.vecteezy.com/system/resources/previews/002/094/796/original/aquarius-zodiac-sign-icons-vector.jpg";
+                element = "Air";
+                stone = "Amethyst";
+            } 
+            else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+                zodiacSign = "Pisces";
+                dateRange = "February 19 - March 20";
+                traits = "Compassionate, artistic, intuitive, gentle";
+                imageUrl = "https://timesofindia.indiatimes.com/photo/msid-83943364/83943364.jpg?resizemode=4";
+            }
+            else if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) {
+                zodiacSign = "Aries";
+                dateRange = "March 21 - April 19";
+                traits = "Courageous, determined, confident, enthusiastic";
+                imageUrl = "https://imagesvs.oneindia.com/img/2025/05/aries-horoscope-today-may-03-saturday-astrology-prediction-600x338-20250502133912.jpg";
+            }
+            else if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) {
+                zodiacSign = "Taurus";
+                dateRange = "April 20 - May 20";
+                traits = "Reliable, patient, practical, devoted";
+                imageUrl = "https://www.greekmythology.com/images/mythology/taurus_image_629.jpg";
+            }
+            else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+                zodiacSign = "Gemini";
+                dateRange = "May 21 - June 20";
+                traits = "Versatile, expressive, curious, kind";
+                imageUrl = "https://png.pngtree.com/png-clipart/20230823/original/pngtree-gemini-zodiac-sign-artwork-picture-image_8248108.png";
+            }
+            else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
+                zodiacSign = "Cancer";
+                dateRange = "June 21 - July 22";
+                traits = "Intuitive, sentimental, compassionate, protective";
+                imageUrl = "https://w0.peakpx.com/wallpaper/427/209/HD-wallpaper-zodiac-cancer-luminos-girl-zodiac-yasushi-matsuoka-gorgeous-frumusete-cancer-rac-fantasy-blue-thumbnail.jpg";
+            }
+            else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+                zodiacSign = "Leo";
+                dateRange = "July 23 - August 22";
+                traits = "Dramatic, outgoing, fiery, self-assured";
+                imageUrl = "https://imgk.timesnownews.com/story/Leo_zodiac_sign.jpg?tr=w-400,h-300,fo-auto";
+            }
+            else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+                zodiacSign = "Virgo";
+                dateRange = "August 23 - September 22";
+                traits = "Analytical, practical, precise, kind";
+                imageUrl = "https://i.pinimg.com/236x/00/44/14/004414b20282c718bfb5966e7b0246b0.jpg";
+            }
+            else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
+                zodiacSign = "Libra";
+                dateRange = "September 23 - October 22";
+                traits = "Diplomatic, gracious, fair-minded, social";
+                imageUrl = "https://www.greekmythology.com/images/mythology/libra_image_634.jpg";
+            }
+            else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) {
+                zodiacSign = "Scorpio";
+                dateRange = "October 23 - November 21";
+                traits = "Passionate, stubborn, resourceful, brave";
+                imageUrl = "https://static.toiimg.com/thumb/msid-121079045,width-400,resizemode-4/121079045.jpg";
+            }
+            else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) {
+                zodiacSign = "Sagittarius";
+                dateRange = "November 22 - December 21";
+                traits = "Extroverted, optimistic, funny, generous";
+                imageUrl = "https://i.pinimg.com/474x/38/cd/0c/38cd0c401072bec331cf4efd639f98af.jpg";
+            }
+            else if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) {
+                zodiacSign = "Capricorn";
+                dateRange = "December 22 - January 19";
+                traits = "Serious, independent, disciplined, tenacious";
+                imageUrl = "https://astrotalk.com/astrology-blog/wp-content/uploads/2023/07/1000_F_552707115_uTwDq8DJ9YZQt3d.jpg";
+            }
+            
+            // Display the result
+            if (zodiacSign) {
+                document.getElementById('zodiac-name').textContent = zodiacSign;
+                document.getElementById('zodiac-date-range').textContent = dateRange;
+                document.getElementById('zodiac-traits').textContent = traits;
+                document.getElementById('zodiac-img').src = imageUrl;
+                document.getElementById('zodiac-img').alt = zodiacSign + " symbol";
+                document.getElementById('result').style.display = 'block';
+            } else {
+                alert("Please enter a valid date!");
+            }
+        }
+    </script>
+</body>
+</html>
